@@ -35,17 +35,18 @@ public class UserServerImpl implements UserService {
 	
 	@Value("${mysqldb.datasource.url:afterloe liu}")
 	private String autoName;
+	@Value("${service.name:cloud-webui-userService}")
+	private String SERVICE_NAME;
 	@Autowired
 	private RestTemplate restTemplate;
-	private final String SERVICE_NAME="cloud-webui-userService";
 
 	/* (non-Javadoc)
 	 * @see com.github.afterloe.service.UserService#register(java.lang.String, int)
 	 */
 	@Override
 	@HystrixCommand(fallbackMethod="fallbackRegister")
-	public User register(String name, int age) {
-		return restTemplate.getForObject("http://" + SERVICE_NAME + "/register", User.class);
+	public User register(String name, int age) { 
+		return restTemplate.getForObject("http://" + SERVICE_NAME + "/register?name=" + name + "&age=" + age, User.class);
 	}
 	
 	public User fallbackRegister(String name, int age) {
