@@ -12,7 +12,7 @@ apply plugin: "eclipse"
 apply plugin: "org.springframework.boot"
 
 jar {
-	baseName = "spring-cloud-webui"
+	baseName = "simple-thrift-server"
 	version= "0.0.1"
 }
 
@@ -32,6 +32,7 @@ dependencies {
 	compile("org.springframework.cloud:spring-cloud-starter-eureka:1.3.0.RELEASE") // spring cloud eureka client
 	compile("org.springframework.cloud:spring-cloud-starter-hystrix:1.3.0.RELEASE") // spring cloud hystrix client 断路器
 	compile("de.codecentric:spring-boot-admin-server:1.5.0") // spring cloud admin
+	compile("org.apache.thrift:libthrift:0.10.0") // thrift lib
 }
 
 allprojects {
