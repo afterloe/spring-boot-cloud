@@ -30,6 +30,8 @@ dependencies {
 	compile("org.springframework.cloud:spring-cloud-starter-config") // spring cloud configuration
 	compile("org.springframework.boot:spring-boot-starter-actuator") // spring boot 健康状态监控 curl host:port/health
 	compile('org.springframework.cloud:spring-cloud-starter-eureka:1.3.0.RELEASE') // spring cloud eureka client
+	compile("org.springframework.cloud:spring-cloud-starter-zuul:1.3.0.RELEASE") // spring cloud api getway Zuul
+	
 }
 
 allprojects {

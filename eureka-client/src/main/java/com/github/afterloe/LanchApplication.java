@@ -16,8 +16,9 @@ import java.util.Collection;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
+import org.springframework.cloud.client.SpringCloudApplication;
+import org.springframework.cloud.netflix.zuul.EnableZuulProxy;
+import org.springframework.context.annotation.Bean;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -25,9 +26,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.github.afterloe.domain.User;
+import com.github.afterloe.filter.AccessFilter;
 
-@EnableDiscoveryClient
-@SpringBootApplication
+@EnableZuulProxy
+@SpringCloudApplication
 @RestController
 public class LanchApplication {
 	
@@ -53,6 +55,11 @@ public class LanchApplication {
 		_user.setName(name);
 		userList.add(_user);
 		return new ResponseEntity<User>(_user, HttpStatus.OK);
+	}
+	
+	@Bean
+	public AccessFilter accessFilter() {
+		return new AccessFilter();
 	}
 
 	public static void main(String[] args) {
